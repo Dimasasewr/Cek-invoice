@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Status Pembayaran</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="result">
+    <h2>Status Pembayaran</h2>
+    <div id="status"></div>
+  </div>
+  <script>
+    const kode = new URLSearchParams(window.location.search).get("kode");
+    const statusData = {
+      "INV/TMP/NEO/07/2025/032": "Belum Dibayar"
+    };
+    const status = statusData[kode];
+    document.getElementById("status").innerText = status
+      ? `Status invoice ${kode}: ${status}`
+      : `Invoice ${kode} tidak ditemukan.`;
+  </script>
+</body>
+</html>

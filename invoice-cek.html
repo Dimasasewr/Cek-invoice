@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Hasil Cek Invoice</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="result">
+    <h2>Hasil Cek Invoice</h2>
+    <div id="output"></div>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const kode = params.get('kode');
+
+    const data = {
+      "INV/TMP/NEO/07/2025/032": {
+        perusahaan: "PT Bank Neo Commerce Tbk",
+        tanggal: "07 Juli 2025",
+        jumlah: 63,
+        fee: 2750,
+        subtotal: 173250,
+        ppn: 20790,
+        total: 194040,
+        status: "Belum Dibayar"
+      }
+    };
+
+    const invoice = data[kode];
+    const output = document.getElementById('output');
+
+    if (invoice) {
+      output.innerHTML = `
+        <p><strong>Nomor Invoice:</strong> ${kode}</p>
+        <p><strong>Perusahaan:</strong> ${invoice.perusahaan}</p>
+        <p><strong>Tanggal:</strong> ${invoice.tanggal}</p>
+        <p><strong>Jumlah Review Masuk:</strong> ${invoice.jumlah}</p>
+        <p><strong>Fee per Review:</strong> Rp ${invoice.fee.toLocaleString()}</p>
+        <p><strong>Subtotal:</strong> Rp ${invoice.subtotal.toLocaleString()}</p>
+        <p><strong>PPN 12%:</strong> Rp ${invoice.ppn.toLocaleString()}</p>
+        <p><strong>Total:</strong> Rp ${invoice.total.toLocaleString()}</p>
+        <p><strong>Status Pembayaran:</strong> <a href="status-pembayaran.html?kode=${kode}">${invoice.status}</a></p>
+      `;
+    } else {
+      output.innerHTML = `<p>Invoice dengan kode <strong>${kode}</strong> tidak ditemukan.</p>`;
+    }
+  </script>
+</body>
+</html>

@@ -13,7 +13,7 @@
   <script>
     const kode = new URLSearchParams(window.location.search).get("kode");
     const statusData = {
-      "INV/TMP/NEO/07/2025/032": "Belum Dibayar"
+      "INV/TMP/NEO/07/2025/032": "Pembayaran Telah Dilakukan"
     };
     const status = statusData[kode];
     document.getElementById("status").innerText = status
